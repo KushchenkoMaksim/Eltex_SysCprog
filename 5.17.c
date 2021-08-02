@@ -36,6 +36,7 @@ int main(int argc, char * argv[]){
 		size = read(fd, resstring, 14);
 		if(size != 14){
 			write(2, "Can't read all string from FIFO\n", 32);
+			close(fd);
 			exit(-1);
 		}
 		printf("%s\n", resstring);
@@ -51,12 +52,13 @@ int main(int argc, char * argv[]){
 		size = write(fd, "Hello, world!", 14);
 		if(size != 14){
 			write(2, "Can't write all string to FIFO\n", 31);
+			close(fd);
 			exit(-1);
 		}
 		close(fd);
 	}
 	else {
-		write(2, "Wrong mode passed. Expected \"read\" or \"write\".\n", 47); 
+		write(2, "Wrong mode passed. Expected \"read\" or \"write\".\n", 47);
 		return -1;
 	}
 
