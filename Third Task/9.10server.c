@@ -1,3 +1,4 @@
+/*Программа принимает от клиента два числа и отправляет в ответ их сумму*/
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>

@@ -1,3 +1,4 @@
+/*Пример обрабатывания критической секции с помощью семафора */
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>

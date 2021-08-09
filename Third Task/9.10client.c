@@ -1,3 +1,4 @@
+/*Программа отправляет серверу два числа, а в ответ получает их сумму*/
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -58,7 +59,7 @@ int main()
 
 		printf("Send %d and %d\n", sendBuf.data.a, sendBuf.data.b);
 
-		/* Отсылаем сообщение.*/
+		/* Отсылаем сообщение серверу.*/
 		if (msgsnd(msqid, (struct msgbuf *) &sendBuf, sizeof(sendBuf.data), 0) < 0) {
 			printf("Can\'t send message to queue\n");
 			exit(-1);

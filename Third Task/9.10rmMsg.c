@@ -1,3 +1,4 @@
+/*Удаляем очередь сообщений */
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
