@@ -5,8 +5,8 @@
 
 int main(){
 	int fd[2], result;
-	size_t size;
-	char resstring[14];
+	int size;
+	char resstring[20];
 
 	/* Попытаемся создать pipe */
 	if(pipe(fd) < 0) {
@@ -29,15 +29,13 @@ int main(){
 				printf("Can\'t fork child\n");
 				exit(-1);
 			case 0:
-				//child2
+				//child2 Отправляет сообщение
 				close(fd[0]);
-				size = write(fd[1], "Hello?", 14);
-
-				if(size != 14){
-					printf("Can\'t write full string\n");
-					exit(-1);
+				char strfd[10];
+				sprintf(strfd, "%d", fd[1]);
+				if(execl("5.11child", "5.11child", strfd, NULL) < 0) {
+					printf("Can't exec\n");
 				}
-				close(fd[1]);
 				break;
 			default:
 				//parent
@@ -47,15 +45,13 @@ int main(){
 		}
 	}
 	else {
-		//child1
+		//child1 принимает и печатает сообщение
 		close(fd[1]);
-		size = read(fd[0], resstring, 14);
-
+		size = read(fd[0], resstring, 20);
 		if(size == 0){
 			printf("Can\'t read string\n");
 			exit(-1);
 		}
-
 		printf("%s\n",resstring);
 		close(fd[0]);
 	}
